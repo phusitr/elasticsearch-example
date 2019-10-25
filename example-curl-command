@@ -1,0 +1,40 @@
+[1] Create indexing
+-------------------------------------------------------
+$curl -XPUT http://localhost:9200/argritronics?pretty
+
+
+
+
+[2] List all documents in indexing 
+-------------------------------------------------------
+$curl -XGET 'localhost:9200/test/_search' -d ''
+
+
+
+
+[3] Display index mapping 
+-------------------------------------------------------
+$curl -XGET 'localhost:9200/argritronics/_mapping'
+
+
+
+[4] Insert data to index
+-------------------------------------------------------
+$curl -X POST "localhost:9200/argritronics/_doc/?pretty" -H 'Content-Type: application/json' -d'
+{
+    "station" : "adizom01",
+    "tempvalue" : "37",
+    "timestamp" : "2019-10-24T13:15:12Z"
+}
+'
+
+[5] Create mapping
+-------------------------------------------------------
+curl -X PUT "localhost:9200/test/_mapping?pretty" -H 'Content-Type: application/json' -d'
+{
+ "properties": {
+      "timestamp": {
+		"type": "date", "index":true
+ 	}
+   }
+}'
